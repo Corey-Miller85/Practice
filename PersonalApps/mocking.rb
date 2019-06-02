@@ -16,3 +16,4 @@ def mocking(string)
 end
 
 p mocking("all children are special")
+p mocking("insert meme here")
