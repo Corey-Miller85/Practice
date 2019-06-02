@@ -45,6 +45,10 @@ new_word = ""
     return new_word
 end
 
-def power_of_two?
-
+def power_of_two?(number)
+product = 1 
+while product < number
+    product *= 2 
+end
+product == number
 end
