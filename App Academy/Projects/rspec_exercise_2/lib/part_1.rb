@@ -10,3 +10,9 @@ def partition(array,num)
     end
     return new_array, new_array_2
 end
+
+
+def merge(hash1,hash2)
+    hash3 = hash1.merge(hash2)
+    return hash3
+end
