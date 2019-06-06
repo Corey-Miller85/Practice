@@ -14,15 +14,13 @@ def palindrome?(string)
 end
 
 def substrings(string)
-    hash = {}
-    string.length.times do |j|
-        (1..string.length - j).each do |x|
-            key = string[j,x]
-            
-            hash[key] = true
-        end
+   subs = []
+   (0...string.length).each do |start_str|
+        (start_str...string.length).each do |end_str|
+        subs << string[start_str..end_str]
     end
-    return hash.keys    
+end
+subs
 end
 
 def palindrome_substrings(str)
