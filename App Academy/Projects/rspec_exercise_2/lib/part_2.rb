@@ -34,3 +34,4 @@ def palindrome_substrings(str)
     end
     return array
 end
+    
