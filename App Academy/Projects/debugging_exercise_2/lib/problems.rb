@@ -2,29 +2,43 @@
 # You should implement your methods in this file.
 # Feel free to use the debugger when you get stuck.
 
-def largest_prime_factor(num)
-    divisors = []
-    prime_divisors = []
-    (1..num).each do |i|
-        if num % i == 0
-            divisors << i 
-        end
-        divisors.each do |ele|
-            if is_prime?(ele) == true
-                prime_divisors << ele
-            end
-        end
-    end
-    prime_divisors[-1]
-end
 
 
 def is_prime?(num)
    return false if num < 2 
-    (2...num).each do |ele| 
-        return false if num % ele == 0 
+    (2...num).none? {|ele| num % ele == 0}
+end
+
+def largest_prime_factor(num)
+    num.downto(2) do |factor| 
+        if num % factor == 0 && is_prime?(factor)
+            return factor
+        end
     end
-return true 
 end
 
 
+
+
+def unique_chars?(string)
+    already_seen = []
+    string.each_char do |char| 
+        if already_seen.include?(char)
+            return false
+        end
+        already_seen << char
+    end
+    return true
+end
+
+def dupe_indices(array)
+    hash = Hash.new { |h, k| h[k] = [] }
+    array.each_with_index do |ele, i| 
+        hash[ele] << i
+    end
+    hash.select {|k, v| v.length > 1 }
+
+
+end
+
+p dupe_indices(["a", "b", "c", "c", "b"])
