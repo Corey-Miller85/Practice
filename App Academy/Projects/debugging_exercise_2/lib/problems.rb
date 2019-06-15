@@ -41,4 +41,14 @@ def dupe_indices(array)
 
 end
 
-p dupe_indices(["a", "b", "c", "c", "b"])
+def counter(array)
+    count = Hash.new(0)
+    array.each {|ele| count[ele] += 1}
+    return count
+end
+
+def ana_array(arr1, arr2)
+   counter1 = counter(arr1)
+   counter2 = counter(arr2)
+   counter1 == counter2 
+end
