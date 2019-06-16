@@ -14,7 +14,7 @@ end
 
 def any_passing_students?(students)
     students.any? do |student|
-        
-        student[:grades].sum / student[:grades].length >= 75
+        avg = student[:grades].sum / student[:grades].length * 1.0
+        avg >= 75 
     end
 end
