@@ -12,4 +12,9 @@ def no_valid_url?(array)
     end
 end
 
-
+def any_passing_students?(students)
+    students.any? do |student|
+        
+        student[:grades].sum / student[:grades].length >= 75
+    end
+end
