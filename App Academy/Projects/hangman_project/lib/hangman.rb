@@ -35,10 +35,16 @@ class Hangman
   def get_matching_indices(char)
     array = []
     @secret_word.each_char.with_index do |ele, i|
-      if char.include?(ele) == char 
+      if char == ele
         array << i
       end
     end
     array
+  end
+
+  def fill_indices(char, array)
+    array.each do |num|
+      @guess_word[num] = char
+    end
   end
 end
