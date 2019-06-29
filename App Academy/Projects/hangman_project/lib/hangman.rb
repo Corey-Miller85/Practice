@@ -13,5 +13,32 @@ class Hangman
   end
     
   def guess_word
+    @guess_word
+  end
+
+  def attempted_chars
+    @attempted_chars
+  end
+
+  def remaining_incorrect_guesses
+    @remaining_incorrect_guesses
+  end
+
+  def already_attempted?(char)
+    if @attempted_chars.include?(char)
+      true
+    else
+      false
+    end
+  end
+
+  def get_matching_indices(char)
+    array = []
+    @secret_word.each_char.with_index do |ele, i|
+      if char.include?(ele) == char 
+        array << i
+      end
+    end
+    array
   end
 end
