@@ -45,18 +45,20 @@ class Hangman
   end
 
   def try_guess(char)
-    
-    if self.get_matching_indices(char) == []
-      @remaining_incorrect_guesses -= 1
-    end
-    self.fill_indices(char, self.get_matching_indices(char))
-    if self.already_attempted?(char) == true
-      print "that has already been attempted"
+    if self.already_attempted?(char)
+      puts "that has already been attempted"
       return false
-    else 
-      @attempted_chars << char
-      return true
-    end 
+    end    
+
+    @attempted_chars << char
+    matches = self.get_matching_indices(char)
+    self.fill_indices(char, matches)
+
+    @remaining_incorrect_guesses -= 1 if matches == []
+
+    return true
+
+
   end
 
   def ask_user_for_guess
