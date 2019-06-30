@@ -44,7 +44,8 @@ class Hangman
     end
   end
 
-  def try_guess(char)
+  def try_guess(char) 
+    
     if self.already_attempted?(char)
       puts "that has already been attempted"
       return false
