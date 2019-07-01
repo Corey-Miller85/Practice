@@ -18,7 +18,9 @@ class Code
       Code.new(random_pegs)
     end
 
-    def self.from_string
+    def self.from_string(pegs)
+      
+    end
 
 
     def initialize(chars)
