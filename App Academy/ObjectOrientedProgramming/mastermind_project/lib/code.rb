@@ -77,6 +77,4 @@ class Code
     self.pegs == guess.pegs
   end
 
-  end
-
 end
