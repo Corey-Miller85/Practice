@@ -19,7 +19,7 @@ class Code
     end
 
     def self.from_string(pegs)
-      
+      Code.new(pegs.split(""))
     end
 
 
@@ -31,5 +31,11 @@ class Code
       end
     end
 
+    def [](index)
+      @pegs[index]
+    end
     
+    def length
+      @pegs.length
+    end
 end
