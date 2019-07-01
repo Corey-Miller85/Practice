@@ -38,4 +38,16 @@ class Code
     def length
       @pegs.length
     end
+
+    def num_exact_matches(code)
+      i = 0
+      counter = 0
+      while i < @pegs.length 
+        if code[i] == self.pegs[i]
+          counter += 1 
+        end
+        i += 1 
+      end
+      return counter
+    end
 end
