@@ -6,23 +6,23 @@ require "byebug"
 # Example:
 #
 # # all_vowel_pairs(["goat", "action", "tear", "impromptu", "tired", "europe"])   # => ["action europe", "tear impromptu"]
-# def all_vowel_pairs(words)
-#     vowels = "aeiou"
-#     word_vowels = []
-#     match_words = []
-#     words.each do |word|
-#         word.each_char do |char|
-#             if vowels.include?(char)
-#                 word_vowels << char
-#             end
-#         end
-#     end
-#     return 
-# end
+def all_vowel_pairs(words)
+    vowels = ["a","e","i","o","u"]
+    pairs = []
+    
 
+    words.each_with_index do |word_1, index_1|
+        words.each_with_index do |word_2, index_2|
+            pair = word_1 + " " + word_2
+            if index_2 > index_1 && vowels.all? {|vow| pair.include?(vow)}
+                pairs << pair
+            end
+        end
+    end
+    return pairs
+end
 
-
-# p all_vowel_pairs(["goat", "action", "tear", "impromptu", "tired", "europe"])
+p all_vowel_pairs(["goat", "action", "tear", "impromptu", "tired", "europe"]) 
 
 
 
@@ -43,8 +43,6 @@ def composite?(num)
     false
 end
 
-p composite?(12)
-
 
 # A bigram is a string containing two letters.
 # Write a method, find_bigrams, that takes in a string and an array of bigrams.
@@ -56,7 +54,7 @@ p composite?(12)
 # find_bigrams("the theater is empty", ["cy", "em", "ty", "ea", "oo"])  # => ["em", "ty", "ea"]
 # find_bigrams("to the moon and back", ["ck", "oo", "ha", "at"])        # => ["ck", "oo"]
 def find_bigrams(str, bigrams)
-
+    bigrams.select {|bigram| str.include?(bigram)} 
 end
 
 class Hash
@@ -74,7 +72,10 @@ class Hash
     # hash_2.my_select { |k, v| k + 1 == v }      # => {10=>11, 5=>6, 7=>8})
     # hash_2.my_select                            # => {4=>4}
     def my_select(&prc)
-
+        new_hash = {}
+        prc ||= Proc.new {|k,v| k == v}
+        new_hash = self.select {|k,v| prc.call(k, v)}
+        return new_hash
     end
 end
 
@@ -88,7 +89,19 @@ class String
     # "cats".substrings     # => ["c", "ca", "cat", "cats", "a", "at", "ats", "t", "ts", "s"]
     # "cats".substrings(2)  # => ["ca", "at", "ts"]
     def substrings(length = nil)
-
+        all_subs = []
+        (0...self.length).each do |idx_1|
+            (idx_1...self.length).each do |idx_2|
+                sub = self[idx_1..idx_2]
+                all_subs << sub
+            end
+        end
+        if length.nil?
+            all_subs
+        else
+            all_subs.select {|sub| sub.length == length}
+        end
+        
     end
 
 
@@ -102,6 +115,14 @@ class String
     # "bootcamp".caesar_cipher(2) #=> "dqqvecor"
     # "zebra".caesar_cipher(4)    #=> "difve"
     def caesar_cipher(num)
+        new_str = ""
+        alpha = ("a".."z").to_a
+        self.each_char do |char|
+            position = alpha.index(char)
+            new_pos = (position + num) % 26
+            new_str += alpha[new_pos]
+        end
 
+        new_str
     end
 end
