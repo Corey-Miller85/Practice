@@ -73,10 +73,10 @@ class Array
     zipped
   end
 
-  def my_rotate
+  def my_rotate(positions = 1)
     alpha = ("a".."z")
-    self.my_each do |char,i|
-        
+    self.my_each do |char|
+        puts char
     end
 
   end
